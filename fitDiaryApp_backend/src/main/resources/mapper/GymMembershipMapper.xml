@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwebss.fitdiary.backend.dao.GymMembershipMapper">
+  <resultMap id="BaseResultMap" type="com.dwebss.fitdiary.backend.model.GymMembership">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="MEMBERSHIP_CLASS_MAPPING_ID" jdbcType="INTEGER" property="membershipClassMappingId" />
+    <result column="GYM_ID" jdbcType="INTEGER" property="gymId" />
+    <result column="USER_MEMBERSHIP_CD" jdbcType="INTEGER" property="userMembershipCd" />
+    <result column="CLASS_CATEGORY_CD" jdbcType="INTEGER" property="classCategoryCd" />
+  </resultMap>
+</mapper>

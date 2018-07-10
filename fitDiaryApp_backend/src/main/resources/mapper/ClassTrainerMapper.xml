@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwebss.fitdiary.backend.dao.ClassTrainerMapper">
+  <resultMap id="BaseResultMap" type="com.dwebss.fitdiary.backend.model.ClassTrainer">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="CLASS_TRAINER_ID" jdbcType="INTEGER" property="classTrainerId" />
+    <result column="CLASS_INFO_ID" jdbcType="INTEGER" property="classInfoId" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+  </resultMap>
+</mapper>

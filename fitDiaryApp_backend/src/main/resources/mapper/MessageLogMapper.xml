@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwebss.fitdiary.backend.dao.MessageLogMapper">
+  <resultMap id="BaseResultMap" type="com.dwebss.fitdiary.backend.model.MessageLog">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="MESSAGE_ID" jdbcType="INTEGER" property="messageId" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="SEND_YN" jdbcType="CHAR" property="sendYn" />
+    <result column="SEND_D" jdbcType="DATE" property="sendD" />
+    <result column="SEND_T" jdbcType="INTEGER" property="sendT" />
+    <result column="RECEIVER_ID" jdbcType="INTEGER" property="receiverId" />
+    <result column="SENDER_ID" jdbcType="INTEGER" property="senderId" />
+  </resultMap>
+</mapper>

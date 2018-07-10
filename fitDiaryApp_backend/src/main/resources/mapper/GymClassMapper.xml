@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwebss.fitdiary.backend.dao.GymClassMapper">
+  <resultMap id="BaseResultMap" type="com.dwebss.fitdiary.backend.model.GymClass">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="CLASS_INFO_ID" jdbcType="INTEGER" property="classInfoId" />
+    <result column="GYM_ID" jdbcType="INTEGER" property="gymId" />
+    <result column="CLASS_CONTINUE_CD" jdbcType="INTEGER" property="classContinueCd" />
+    <result column="CLASS_CATEGORY_CD" jdbcType="INTEGER" property="classCategoryCd" />
+    <result column="CLASS_NM" jdbcType="VARCHAR" property="classNm" />
+    <result column="CLASS_ENROLL_LIMIT" jdbcType="INTEGER" property="classEnrollLimit" />
+    <result column="CLASS_DESC" jdbcType="VARCHAR" property="classDesc" />
+    <result column="CLASS_ENROLL_START_T" jdbcType="INTEGER" property="classEnrollStartT" />
+    <result column="CLASS_ENROLL_END_T" jdbcType="INTEGER" property="classEnrollEndT" />
+    <result column="CLASS_REPORT_USING_YN" jdbcType="CHAR" property="classReportUsingYn" />
+  </resultMap>
+</mapper>

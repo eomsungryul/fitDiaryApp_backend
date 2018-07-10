@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwebss.fitdiary.backend.dao.UserClassReportMapper">
+  <resultMap id="BaseResultMap" type="com.dwebss.fitdiary.backend.model.UserClassReport">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="USER_CLASS_REPORT_ID" jdbcType="INTEGER" property="userClassReportId" />
+    <result column="USER_CLASS_PROGRESS_ID" jdbcType="INTEGER" property="userClassProgressId" />
+    <result column="EXERCISE_COURSE_DETAIL_ID" jdbcType="INTEGER" property="exerciseCourseDetailId" />
+    <result column="TRAINER_COMMENT" jdbcType="VARCHAR" property="trainerComment" />
+    <result column="TRAIN_VIDEO" jdbcType="VARCHAR" property="trainVideo" />
+    <result column="TRAIN_YN" jdbcType="CHAR" property="trainYn" />
+  </resultMap>
+</mapper>

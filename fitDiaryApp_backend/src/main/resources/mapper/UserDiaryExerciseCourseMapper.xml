@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwebss.fitdiary.backend.dao.UserDiaryExerciseCourseMapper">
+  <resultMap id="BaseResultMap" type="com.dwebss.fitdiary.backend.model.UserDiaryExerciseCourse">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="USER_DIARY_EXERCISE_INFO_ID" jdbcType="INTEGER" property="userDiaryExerciseInfoId" />
+    <result column="USER_DIARY_ID" jdbcType="INTEGER" property="userDiaryId" />
+    <result column="EXERCISE_INFO_ID" jdbcType="INTEGER" property="exerciseInfoId" />
+    <result column="EXERCISE_ SUCCESS_YN" jdbcType="CHAR" property="exerciseSuccessYn" />
+    <result column="EXERCISE_ORDER" jdbcType="INTEGER" property="exerciseOrder" />
+  </resultMap>
+</mapper>

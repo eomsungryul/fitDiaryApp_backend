@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwebss.fitdiary.backend.dao.GymMapper">
+  <resultMap id="BaseResultMap" type="com.dwebss.fitdiary.backend.model.Gym">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="GYM_ID" jdbcType="INTEGER" property="gymId" />
+    <result column="GYM_NM" jdbcType="VARCHAR" property="gymNm" />
+    <result column="GYM_ADDR" jdbcType="VARCHAR" property="gymAddr" />
+    <result column="GYM_PH" jdbcType="VARCHAR" property="gymPh" />
+    <result column="GYM_SV_IP" jdbcType="VARCHAR" property="gymSvIp" />
+    <result column="GYM_SV_PORT" jdbcType="VARCHAR" property="gymSvPort" />
+    <result column="GYM_SV_DB_CD" jdbcType="INTEGER" property="gymSvDbCd" />
+    <result column="GYM_MF_INTIME" jdbcType="INTEGER" property="gymMfIntime" />
+    <result column="GYM_MF_OUTTIME" jdbcType="INTEGER" property="gymMfOuttime" />
+    <result column="GYM_SS_INTIME" jdbcType="INTEGER" property="gymSsIntime" />
+    <result column="GYM_SS_OUTTIME" jdbcType="INTEGER" property="gymSsOuttime" />
+    <result column="GYM_ETC" jdbcType="VARCHAR" property="gymEtc" />
+    <result column="GYM_DESC" jdbcType="VARCHAR" property="gymDesc" />
+    <result column="GYM_PICTURE" jdbcType="VARCHAR" property="gymPicture" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwebss.fitdiary.backend.dao.GymOffDaysMapper">
+  <resultMap id="BaseResultMap" type="com.dwebss.fitdiary.backend.model.GymOffDays">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="OFF_DAY_ID" jdbcType="INTEGER" property="offDayId" />
+    <result column="OFF_DAY" jdbcType="DATE" property="offDay" />
+    <result column="OFF_DESC" jdbcType="VARCHAR" property="offDesc" />
+    <result column="TRAINER_YN" jdbcType="CHAR" property="trainerYn" />
+    <result column="UESR_GYM_ID" jdbcType="INTEGER" property="uesrGymId" />
+  </resultMap>
+</mapper>

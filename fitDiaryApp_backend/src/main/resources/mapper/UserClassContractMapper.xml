@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwebss.fitdiary.backend.dao.UserClassContractMapper">
+  <resultMap id="BaseResultMap" type="com.dwebss.fitdiary.backend.model.UserClassContract">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="USER_CLASS_CONTRACT_ID" jdbcType="INTEGER" property="userClassContractId" />
+    <result column="CLASS_INFO_ID" jdbcType="INTEGER" property="classInfoId" />
+    <result column="CONTRACT_CLASS_TURNS" jdbcType="INTEGER" property="contractClassTurns" />
+    <result column="CONTRACT_CLASS_D" jdbcType="DATE" property="contractClassD" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+  </resultMap>
+</mapper>

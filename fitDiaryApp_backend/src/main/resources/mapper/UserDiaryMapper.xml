@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwebss.fitdiary.backend.dao.UserDiaryMapper">
+  <resultMap id="BaseResultMap" type="com.dwebss.fitdiary.backend.model.UserDiary">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="USER_DIARY_ID" jdbcType="INTEGER" property="userDiaryId" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="DAIRY_WRITE_D" jdbcType="DATE" property="dairyWriteD" />
+    <result column="DIARY_CONTENT" jdbcType="VARCHAR" property="diaryContent" />
+    <result column="SELF_IMAGE_PATH" jdbcType="VARCHAR" property="selfImagePath" />
+  </resultMap>
+</mapper>

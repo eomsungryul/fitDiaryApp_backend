@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwebss.fitdiary.backend.dao.UserRolesMapper">
+  <resultMap id="BaseResultMap" type="com.dwebss.fitdiary.backend.model.UserRoles">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="UESR_GYM_ID" jdbcType="INTEGER" property="uesrGymId" />
+    <result column="USER_ROLE_CD" jdbcType="INTEGER" property="userRoleCd" />
+    <result column="ROLE_START_D" jdbcType="DATE" property="roleStartD" />
+    <result column="ROLE_END_D" jdbcType="DATE" property="roleEndD" />
+    <result column="ACTIVE_YN" jdbcType="CHAR" property="activeYn" />
+  </resultMap>
+</mapper>

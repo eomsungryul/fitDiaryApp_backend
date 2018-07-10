@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwebss.fitdiary.backend.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.dwebss.fitdiary.backend.model.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="USER_LOGIN_ID" jdbcType="VARCHAR" property="userLoginId" />
+    <result column="USER_PASSWORD" jdbcType="VARCHAR" property="userPassword" />
+    <result column="USER_NM" jdbcType="VARCHAR" property="userNm" />
+    <result column="USER_HEIGHT" jdbcType="DECIMAL" property="userHeight" />
+    <result column="USER_WEIGHT" jdbcType="DECIMAL" property="userWeight" />
+    <result column="USER_PHONE" jdbcType="VARCHAR" property="userPhone" />
+    <result column="AUTH_CD" jdbcType="INTEGER" property="authCd" />
+    <result column="USER_SEX" jdbcType="CHAR" property="userSex" />
+    <result column="USER_EMAIL" jdbcType="VARCHAR" property="userEmail" />
+  </resultMap>
+</mapper>

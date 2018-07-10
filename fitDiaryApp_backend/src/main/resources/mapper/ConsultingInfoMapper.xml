@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwebss.fitdiary.backend.dao.ConsultingInfoMapper">
+  <resultMap id="BaseResultMap" type="com.dwebss.fitdiary.backend.model.ConsultingInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="CONSULTING_ID" jdbcType="INTEGER" property="consultingId" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="TRAINER_ID" jdbcType="INTEGER" property="trainerId" />
+    <result column="CONSULTING_CONTENT" jdbcType="VARCHAR" property="consultingContent" />
+    <result column="CONSULTING_D" jdbcType="DATE" property="consultingD" />
+    <result column="CONSULTING_SUCCESS_YN" jdbcType="CHAR" property="consultingSuccessYn" />
+  </resultMap>
+</mapper>
