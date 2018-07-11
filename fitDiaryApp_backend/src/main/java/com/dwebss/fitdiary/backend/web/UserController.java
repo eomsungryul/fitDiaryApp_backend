@@ -23,7 +23,7 @@ public class UserController {
     @PostMapping
     public Result add(@RequestBody User user) {
         userService.save(user);
-        return ResultGenerator.genSuccessResult();
+        return ResultGenerator.genSuccessResult(user);
     }
 
     @DeleteMapping("/{id}")
