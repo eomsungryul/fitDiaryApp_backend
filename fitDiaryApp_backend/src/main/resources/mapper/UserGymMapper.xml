@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dwebss.fitdiary.backend.dao.UserGymMapper">
-  <resultMap id="BaseResultMap" type="com.dwebss.fitdiary.backend.model.UserGym">
+  <resultMap id="userGymMap" type="com.dwebss.fitdiary.backend.model.UserGym">
     <!--
       WARNING - @mbg.generated
     -->
@@ -23,4 +23,16 @@
     <result column="APPROVAL_YN" jdbcType="CHAR" property="approvalYn" />
     <result column="USER_CARDIO_RATIO" jdbcType="DECIMAL" property="userCardioRatio" />
   </resultMap>
+  
+  
+  
+    <select id="selectGymID" parameterType="com.dwebss.fitdiary.backend.model.UserGym" resultMap="userGymMap">
+		SELECT 
+			*
+		FROM USER_GYM 
+		WHERE 1=1
+		AND GYM_ID=#{gymId}
+		AND USER_ID=#{userId}
+    </select>
+  
 </mapper>

@@ -6,9 +6,13 @@ import com.dwebss.fitdiary.backend.model.UserDiary;
 import com.dwebss.fitdiary.backend.service.UserDiaryService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -50,5 +54,21 @@ public class UserDiaryController {
         List<UserDiary> list = userDiaryService.findAll();
         PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResult(pageInfo);
+    }
+    
+    
+    @GetMapping("/{userId}/{startDate}/{endDate}")
+    public Result selectDiary(@PathVariable Integer userId ,
+    		@PathVariable @DateTimeFormat(pattern = "yyyyMMdd") LocalDate startDate,
+    		@PathVariable @DateTimeFormat(pattern = "yyyyMMdd") LocalDate endDate
+    		) {
+    	
+    	UserDiary userDiary = new UserDiary();
+        userDiary.setUserId(userId);
+        userDiary.setStartDate(java.sql.Date.valueOf(startDate));
+        userDiary.setEndDate(java.sql.Date.valueOf(endDate));
+        List<UserDiary> res = userDiaryService.selectDiary(userDiary);
+        
+        return ResultGenerator.genSuccessResult(res);
     }
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwebss.fitdiary.backend.dao.CommonCodeCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.dwebss.fitdiary.backend.model.CommonCodeCategory">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="CODE_CATEGORY_ID" jdbcType="INTEGER" property="codeCategoryId" />
+    <result column="CODE_CATEGORY_NM" jdbcType="VARCHAR" property="codeCategoryNm" />
+    <result column="CODE_CATEGORY_ENG_NM" jdbcType="VARCHAR" property="codeCategoryEngNm" />
+  </resultMap>
+</mapper>

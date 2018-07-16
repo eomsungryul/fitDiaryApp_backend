@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dwebss.fitdiary.backend.dao.UserDiaryMapper">
-  <resultMap id="BaseResultMap" type="com.dwebss.fitdiary.backend.model.UserDiary">
+  <resultMap id="userDiaryMap" type="com.dwebss.fitdiary.backend.model.UserDiary">
     <!--
       WARNING - @mbg.generated
     -->
@@ -10,5 +10,50 @@
     <result column="DAIRY_WRITE_D" jdbcType="DATE" property="dairyWriteD" />
     <result column="DIARY_CONTENT" jdbcType="VARCHAR" property="diaryContent" />
     <result column="SELF_IMAGE_PATH" jdbcType="VARCHAR" property="selfImagePath" />
+    
+    <result column="EXERCISE_SUCCESS_YN" jdbcType="VARCHAR" property="exerciseSuccessYn" />
+    <result column="EXERCISE_ORDER" jdbcType="VARCHAR" property="exerciseOrder" />
+    <result column="EXERCISE_NM" jdbcType="VARCHAR" property="exerciseNm" />
+    <result column="EXERCISE_DESC" jdbcType="VARCHAR" property="exerciseDesc" />
+    <result column="EXERCISE_RANGE_CD" jdbcType="INTEGER" property="exerciseRangeCd" />
+    <result column="EXERCISE_EQUIP_CD" jdbcType="INTEGER" property="exerciseEquipCd" />
   </resultMap>
+
+<sql id="WhereQuery">
+	WHERE 1=1
+	AND ud.USER_DIARY_ID = udec.USER_DIARY_ID
+	AND udec.EXERCISE_INFO_ID = ei.EXERCISE_INFO_ID
+	<if	test="userId != null">
+		AND ud.USER_ID = #{ userId }
+	</if>
+	<if	test="dairyWriteD != null">
+		AND ud.DAIRY_WRITE_D = DATE_FORMAT( #{ dairyWriteD }, '%Y-%m-%d')
+	</if>
+</sql>
+		 
+ <select id="selectTodayExerciseCourse" parameterType="com.dwebss.fitdiary.backend.model.UserDiary" resultMap="userDiaryMap">
+  	SELECT A.* FROM (
+		SELECT 
+			ud.USER_DIARY_ID ,
+			udec.EXERCISE_SUCCESS_YN,
+			udec.EXERCISE_ORDER,
+			ei.EXERCISE_NM,
+			ei.EXERCISE_DESC,
+    	    ei.EXERCISE_RANGE_CD,
+			ei.EXERCISE_EQUIP_CD
+		FROM USER_DIARY ud, EXERCISE_INFO ei, USER_DIARY_EXERCISE_COURSE udec
+		<include refid="com.dwebss.fitdiary.backend.dao.UserDiaryMapper.WhereQuery" />
+		ORDER BY USER_ID DESC
+	) A
+  </select>
+  
+  
+ <select id="selectDiary" parameterType="com.dwebss.fitdiary.backend.model.UserDiary" resultMap="userDiaryMap">
+	SELECT 
+		ud.USER_DIARY_ID ,
+	FROM USER_DIARY 
+	ORDER BY USER_ID DESC
+  </select>
+  
+  
 </mapper>

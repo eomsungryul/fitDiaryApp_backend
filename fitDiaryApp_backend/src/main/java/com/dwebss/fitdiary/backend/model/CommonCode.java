@@ -12,22 +12,28 @@ public class CommonCode {
     private Integer code;
 
     /**
-     * 코드카테고리
+     * 코드유형ID
      */
-    @Column(name = "CODE_CATEGORY")
-    private String codeCategory;
+    @Column(name = "CODE_CATEGORY_ID")
+    private Integer codeCategoryId;
 
     /**
-     * 코드값
+     * 코드명
      */
-    @Column(name = "CODE_VALUE")
-    private String codeValue;
+    @Column(name = "CODE_NM")
+    private String codeNm;
 
     /**
-     * 코드설명
+     * 코드영문명
      */
-    @Column(name = "CODE_DESC")
-    private String codeDesc;
+    @Column(name = "CODE_ENG_NM")
+    private String codeEngNm;
+
+    /**
+     * 코드사용여부
+     */
+    @Column(name = "CODE_USE_YN")
+    private String codeUseYn;
 
     /**
      * getter코드
@@ -48,56 +54,74 @@ public class CommonCode {
     }
 
     /**
-     * getter코드카테고리
+     * getter코드유형ID
      *
-     * @return CODE_CATEGORY - 코드카테고리
+     * @return CODE_CATEGORY_ID - 코드유형ID
      */
-    public String getCodeCategory() {
-        return codeCategory;
+    public Integer getCodeCategoryId() {
+        return codeCategoryId;
     }
 
     /**
-     * setter코드카테고리
+     * setter코드유형ID
      *
-     * @param codeCategory 코드카테고리
+     * @param codeCategoryId 코드유형ID
      */
-    public void setCodeCategory(String codeCategory) {
-        this.codeCategory = codeCategory;
+    public void setCodeCategoryId(Integer codeCategoryId) {
+        this.codeCategoryId = codeCategoryId;
     }
 
     /**
-     * getter코드값
+     * getter코드명
      *
-     * @return CODE_VALUE - 코드값
+     * @return CODE_NM - 코드명
      */
-    public String getCodeValue() {
-        return codeValue;
+    public String getCodeNm() {
+        return codeNm;
     }
 
     /**
-     * setter코드값
+     * setter코드명
      *
-     * @param codeValue 코드값
+     * @param codeNm 코드명
      */
-    public void setCodeValue(String codeValue) {
-        this.codeValue = codeValue;
+    public void setCodeNm(String codeNm) {
+        this.codeNm = codeNm;
     }
 
     /**
-     * getter코드설명
+     * getter코드영문명
      *
-     * @return CODE_DESC - 코드설명
+     * @return CODE_ENG_NM - 코드영문명
      */
-    public String getCodeDesc() {
-        return codeDesc;
+    public String getCodeEngNm() {
+        return codeEngNm;
     }
 
     /**
-     * setter코드설명
+     * setter코드영문명
      *
-     * @param codeDesc 코드설명
+     * @param codeEngNm 코드영문명
      */
-    public void setCodeDesc(String codeDesc) {
-        this.codeDesc = codeDesc;
+    public void setCodeEngNm(String codeEngNm) {
+        this.codeEngNm = codeEngNm;
+    }
+
+    /**
+     * getter코드사용여부
+     *
+     * @return CODE_USE_YN - 코드사용여부
+     */
+    public String getCodeUseYn() {
+        return codeUseYn;
+    }
+
+    /**
+     * setter코드사용여부
+     *
+     * @param codeUseYn 코드사용여부
+     */
+    public void setCodeUseYn(String codeUseYn) {
+        this.codeUseYn = codeUseYn;
     }
 }

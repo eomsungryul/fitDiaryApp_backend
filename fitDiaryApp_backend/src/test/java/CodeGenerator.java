@@ -18,7 +18,7 @@ import java.util.*;
  */
 public class CodeGenerator {
     //JDBC 설정. 프로젝트의 실제 설정을 수정하십시오.
-    private static final String JDBC_URL = "jdbc:mysql://220.74.55.61:3306/fitness?useSSL=false&amp;serverTimezone=UTC";
+    private static final String JDBC_URL = "jdbc:mysql://13.125.124.29:3306/fitness?useSSL=false&amp;serverTimezone=UTC";
     private static final String JDBC_USERNAME = "fit";
     private static final String JDBC_PASSWORD = "dlfgkwk9!";
     private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
@@ -38,31 +38,34 @@ public class CodeGenerator {
 
     public static void main(String[] args) {
     	
-    	genCode("class_trainer");
-    	genCode("common_code");
-    	genCode("consulting_info");
-    	genCode("exercise_course");
-    	genCode("exercise_course_detail");
-    	genCode("exercise_info");
-    	genCode("exercise_range_sex_goal");
-    	genCode("gym");
-    	genCode("gym_class");
-    	genCode("gym_equip_category");
-    	genCode("gym_membership");
-    	genCode("gym_off_days");
-    	genCode("message_log");
-    	genCode("trainer_detail_info");
-    	genCode("trainer_info");
-    	genCode("user");
-    	genCode("user_class_contract");
-    	genCode("user_class_progress");
-    	genCode("user_class_report");
-    	genCode("user_diary");
-    	genCode("user_diary_exercise_course");
-    	genCode("user_exercise_range");
-    	genCode("user_gym");
-    	genCode("user_memberships");
-    	genCode("user_roles");
+//    	genCode("class_trainer");
+//    	genCode("common_code");
+//    	genCode("consulting_info");
+//    	genCode("exercise_course");
+//    	genCode("exercise_course_detail");
+//    	genCode("exercise_info");
+//    	genCode("exercise_range_sex_goal");
+//    	genCode("gym");
+//    	genCode("gym_class");
+//    	genCode("gym_equip_category");
+//    	genCode("gym_membership");
+//    	genCode("gym_off_days");
+//    	genCode("message_log");
+//    	genCode("trainer_detail_info");
+//    	genCode("trainer_info");
+//    	genCode("user");
+//    	genCode("user_class_contract");
+//    	genCode("user_class_progress");
+//    	genCode("user_class_report");
+//    	genCode("user_diary");
+//    	genCode("user_diary_exercise_course");
+//    	genCode("user_exercise_range");
+//    	genCode("user_gym");
+//    	genCode("user_memberships");
+//    	genCode("user_roles");
+
+//    	genCode("common_code_category");
+    	genCode("user_ot_report");
     	
         //genCodeByCustomModelName( "테이블 이름 입력", "사용자 정의 모델 이름 입력");
     }

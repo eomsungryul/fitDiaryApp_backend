@@ -26,7 +26,7 @@ public class UserDiaryExerciseCourse {
     /**
      * 운동진행여부
      */
-    @Column(name = "`EXERCISE_ SUCCESS_YN`")
+    @Column(name = "`EXERCISE_SUCCESS_YN`")
     private String exerciseSuccessYn;
 
     /**

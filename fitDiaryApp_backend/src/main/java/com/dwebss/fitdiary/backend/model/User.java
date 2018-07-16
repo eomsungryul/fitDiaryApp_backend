@@ -1,8 +1,12 @@
 package com.dwebss.fitdiary.backend.model;
 
 import java.math.BigDecimal;
+import java.util.List;
+
 import javax.persistence.*;
 
+
+@Table(name = "user")
 public class User {
     /**
      * 사용자ID
@@ -65,8 +69,19 @@ public class User {
      */
     @Column(name = "USER_EMAIL")
     private String userEmail;
+    
+    @Transient
+    private List<UserGym> userGymList;
 
-    /**
+	public List<UserGym> getUserGymList() {
+		return userGymList;
+	}
+
+	public void setUserGymList(List<UserGym> userGymList) {
+		this.userGymList = userGymList;
+	}
+
+	/**
      * getter사용자ID
      *
      * @return USER_ID - 사용자ID

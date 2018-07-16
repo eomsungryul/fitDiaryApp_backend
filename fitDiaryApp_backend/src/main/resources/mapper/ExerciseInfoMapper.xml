@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dwebss.fitdiary.backend.dao.ExerciseInfoMapper">
-  <resultMap id="BaseResultMap" type="com.dwebss.fitdiary.backend.model.ExerciseInfo">
+  <resultMap id="exerciseInfoMap" type="com.dwebss.fitdiary.backend.model.ExerciseInfo">
     <!--
       WARNING - @mbg.generated
     -->
@@ -14,4 +14,14 @@
     <result column="EXERCISE_VIDEO" jdbcType="VARCHAR" property="exerciseVideo" />
     <result column="USE_YN" jdbcType="CHAR" property="useYn" />
   </resultMap>
+  
+  <select id="selectExerciseInfo" parameterType="com.dwebss.fitdiary.backend.model.ExerciseInfo" resultMap="exerciseInfoMap">
+	SELECT 
+		*
+	FROM EXERCISE_INFO
+	WHERE 1=1
+	AND EXERCISE_RANGE_CD=#{exerciseRangeCd}
+  </select>
+  
+  
 </mapper>

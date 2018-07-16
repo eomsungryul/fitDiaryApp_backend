@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwebss.fitdiary.backend.dao.UserOtReportMapper">
+  <resultMap id="userOtReportMap" type="com.dwebss.fitdiary.backend.model.UserOtReport">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="USER_OT_REPORT_ID" jdbcType="INTEGER" property="userOtReportId" />
+    <result column="USER_GYM_ID" jdbcType="INTEGER" property="userGymId" />
+    <result column="TRAINER_ID" jdbcType="INTEGER" property="trainerId" />
+    <result column="OT_INSERT_DT" jdbcType="TIMESTAMP" property="otInsertDt" />
+    <result column="OT_DEL_YN" jdbcType="CHAR" property="otDelYn" />
+    <result column="OT_VIDEO_LOCAL" jdbcType="VARCHAR" property="otVideoLocal" />
+    <result column="OT_COMMENT" jdbcType="VARCHAR" property="otComment" />
+    <result column="OT_VIDEO_URL" jdbcType="VARCHAR" property="otVideoUrl" />
+  </resultMap>
+  
+  <sql id="WhereQuery">
+	WHERE 1=1
+	<if	test="userId != null and gymId != null">
+		AND USER_GYM_ID IN (SELECT USER_GYM_ID FROM USER_GYM WHERE USER_ID = #{ userId } AND GYM_ID= #{ gymId }) 
+	</if>
+	<if	test="userGymId != null">
+		AND USER_GYM_ID = #{ userGymId }
+	</if>
+  </sql>
+		 
+ <select id="selectOt" parameterType="com.dwebss.fitdiary.backend.model.UserOtReport" resultMap="userOtReportMap">
+		SELECT 
+			*
+		FROM USER_OT_REPORT
+		<include refid="com.dwebss.fitdiary.backend.dao.UserOtReportMapper.WhereQuery" />
+  </select>
+  
+    <insert id="insertUserReport" parameterType="com.dwebss.fitdiary.backend.model.UserOtReport">
+    	<selectKey resultType="INTEGER" keyProperty="code" order="BEFORE">
+            SELECT COALESCE(MAX(CODE)+1,0) FROM COMMON_CODE
+        </selectKey>
+		INSERT INTO COMMON_CODE (
+		    CODE, 
+		    CODE_CATEGORY, 
+		    CODE_VALUE, 
+		    CODE_DESC
+        )
+        VALUES (
+	        #{ code },
+	       	()
+	       	#{ code_value },
+	       	#{ code_desc }
+       	)
+    </insert>
+  
+  
+  
+  
+</mapper>

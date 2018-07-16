@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dwebss.fitdiary.backend.dao.CommonCodeMapper">
-  <resultMap id="BaseResultMap" type="com.dwebss.fitdiary.backend.model.CommonCode">
+  <resultMap id="commonCodeMap" type="com.dwebss.fitdiary.backend.model.CommonCode">
     <!--
       WARNING - @mbg.generated
     -->
     <id column="CODE" jdbcType="INTEGER" property="code" />
-    <result column="CODE_CATEGORY" jdbcType="VARCHAR" property="codeCategory" />
-    <result column="CODE_VALUE" jdbcType="VARCHAR" property="codeValue" />
-    <result column="CODE_DESC" jdbcType="VARCHAR" property="codeDesc" />
+    <result column="CODE_CATEGORY_ID" jdbcType="INTEGER" property="codeCategoryId" />
+    <result column="CODE_NM" jdbcType="VARCHAR" property="codeNm" />
+    <result column="CODE_ENG_NM" jdbcType="VARCHAR" property="codeEngNm" />
+    <result column="CODE_USE_YN" jdbcType="CHAR" property="codeUseYn" />
   </resultMap>
+  
+  <select id="selectCodeCategory" parameterType="com.dwebss.fitdiary.backend.model.CommonCode" resultMap="commonCodeMap">
+	SELECT 
+		*
+	FROM COMMON_CODE
+	WHERE 1=1
+	AND CODE_CATEGORY_ID=#{codeCategoryId}
+  </select>
+  
+  
+  
 </mapper>

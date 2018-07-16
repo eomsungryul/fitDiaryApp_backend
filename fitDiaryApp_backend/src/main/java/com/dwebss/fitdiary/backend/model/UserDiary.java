@@ -1,6 +1,8 @@
 package com.dwebss.fitdiary.backend.model;
 
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Table(name = "user_diary")
@@ -36,7 +38,96 @@ public class UserDiary {
     @Column(name = "SELF_IMAGE_PATH")
     private String selfImagePath;
 
-    /**
+    @Transient
+    private String exerciseSuccessYn;
+
+    @Transient
+    private String exerciseOrder;
+    
+    @Transient
+    private String exerciseNm;
+    
+    @Transient
+    private String exerciseDesc;
+    
+    @Transient
+    private Integer exerciseEquipCd;
+    
+    @Transient
+    private Integer exerciseRangeCd;
+    
+    @Transient
+    private Date startDate;
+
+    @Transient
+    private Date endDate;
+
+
+    public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Integer getExerciseRangeCd() {
+		return exerciseRangeCd;
+	}
+
+	public void setExerciseRangeCd(Integer exerciseRangeCd) {
+		this.exerciseRangeCd = exerciseRangeCd;
+	}
+
+	public String getExerciseSuccessYn() {
+		return exerciseSuccessYn;
+	}
+
+	public void setExerciseSuccessYn(String exerciseSuccessYn) {
+		this.exerciseSuccessYn = exerciseSuccessYn;
+	}
+
+	public String getExerciseOrder() {
+		return exerciseOrder;
+	}
+
+	public void setExerciseOrder(String exerciseOrder) {
+		this.exerciseOrder = exerciseOrder;
+	}
+
+	public String getExerciseNm() {
+		return exerciseNm;
+	}
+
+	public void setExerciseNm(String exerciseNm) {
+		this.exerciseNm = exerciseNm;
+	}
+
+	public String getExerciseDesc() {
+		return exerciseDesc;
+	}
+
+	public void setExerciseDesc(String exerciseDesc) {
+		this.exerciseDesc = exerciseDesc;
+	}
+
+	public Integer getExerciseEquipCd() {
+		return exerciseEquipCd;
+	}
+
+	public void setExerciseEquipCd(Integer exerciseEquipCd) {
+		this.exerciseEquipCd = exerciseEquipCd;
+	}
+
+	/**
      * getter사용자 일일 다이어리ID
      *
      * @return USER_DIARY_ID - 사용자 일일 다이어리ID

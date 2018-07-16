@@ -10,8 +10,9 @@ public class UserGym {
      * 사용자 헬스장 매핑 ID
      */
     @Id
-    @Column(name = "UESR_GYM_ID")
-    private Integer uesrGymId;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "USER_GYM_ID")
+    private Integer userGymId;
 
     /**
      * 헬스장ID
@@ -114,8 +115,8 @@ public class UserGym {
      *
      * @return UESR_GYM_ID - 사용자 헬스장 매핑 ID
      */
-    public Integer getUesrGymId() {
-        return uesrGymId;
+    public Integer getUserGymId() {
+        return userGymId;
     }
 
     /**
@@ -123,8 +124,8 @@ public class UserGym {
      *
      * @param uesrGymId 사용자 헬스장 매핑 ID
      */
-    public void setUesrGymId(Integer uesrGymId) {
-        this.uesrGymId = uesrGymId;
+    public void setUserGymId(Integer userGymId) {
+        this.userGymId = userGymId;
     }
 
     /**

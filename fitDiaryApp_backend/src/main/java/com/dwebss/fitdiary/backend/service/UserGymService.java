@@ -8,4 +8,6 @@ import com.dwebss.fitdiary.backend.core.Service;
  */
 public interface UserGymService extends Service<UserGym> {
 
+	UserGym select(UserGym ug);
+
 }
