@@ -34,8 +34,30 @@ public class UserDiaryExerciseCourse {
      */
     @Column(name = "EXERCISE_ORDER")
     private Integer exerciseOrder;
+    
+    @Transient
+    private Integer exerciseRangeCd;
+    
+    @Transient
+    private Integer exerciseRangeCnt;
 
-    /**
+    public Integer getExerciseRangeCd() {
+		return exerciseRangeCd;
+	}
+
+	public void setExerciseRangeCd(Integer exerciseRangeCd) {
+		this.exerciseRangeCd = exerciseRangeCd;
+	}
+
+	public Integer getExerciseRangeCnt() {
+		return exerciseRangeCnt;
+	}
+
+	public void setExerciseRangeCnt(Integer exerciseRangeCnt) {
+		this.exerciseRangeCnt = exerciseRangeCnt;
+	}
+
+	/**
      * getter사용자 일일 운동정보ID
      *
      * @return USER_DIARY_EXERCISE_INFO_ID - 사용자 일일 운동정보ID

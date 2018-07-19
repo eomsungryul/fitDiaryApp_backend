@@ -10,6 +10,8 @@
     <result column="EXERCISE_INFO_ID" jdbcType="INTEGER" property="exerciseInfoId" />
     <result column="EXERCISE_SUCCESS_YN" jdbcType="CHAR" property="exerciseSuccessYn" />
     <result column="EXERCISE_ORDER" jdbcType="INTEGER" property="exerciseOrder" />
+    <result column="EXERCISE_RANGE_CD" jdbcType="INTEGER" property="exerciseRangeCd" />
+    <result column="EXERCISE_RANGE_CNT" jdbcType="INTEGER" property="exerciseRangeCnt" />
   </resultMap>
   
    <select id="selectExerciseCourse" parameterType="INTEGER" resultMap="userDiaryExerciseCourseMap">
@@ -19,4 +21,28 @@
 	WHERE 1=1
 	AND USER_DIARY_ID=#{userDiaryId}
   </select>
+  
+  
+  
+   <select id="selectUserExerciseRangeCnt" parameterType="INTEGER" resultMap="userDiaryExerciseCourseMap">
+	SELECT A.EXERCISE_RANGE_CD , count(EXERCISE_RANGE_CD) as EXERCISE_RANGE_CNT FROM (
+		SELECT 
+			ud.USER_DIARY_ID ,
+			udec.EXERCISE_SUCCESS_YN,
+			udec.EXERCISE_ORDER,
+			ei.EXERCISE_NM,
+			ei.EXERCISE_DESC,
+    	ei.EXERCISE_RANGE_CD,
+			ei.EXERCISE_EQUIP_CD
+		FROM USER_DIARY ud, EXERCISE_INFO ei, USER_DIARY_EXERCISE_COURSE udec
+	WHERE 1=1
+	  AND ud.USER_DIARY_ID = udec.USER_DIARY_ID
+	  AND udec.EXERCISE_INFO_ID = ei.EXERCISE_INFO_ID
+		AND ud.USER_ID = #{userId}
+    AND udec.EXERCISE_SUCCESS_YN = 'Y'
+	) A
+  group by EXERCISE_RANGE_CD
+  </select>
+  
+  
 </mapper>

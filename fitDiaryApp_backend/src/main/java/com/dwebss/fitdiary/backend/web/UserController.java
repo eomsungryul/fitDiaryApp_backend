@@ -311,6 +311,14 @@ public class UserController {
     	return ResultGenerator.genSuccessResult(res);
     }
     
+
+    @GetMapping("/range_cnt/{userId}")
+    public Result userExerciseRangeCnt(@PathVariable Integer userId) {
+    	List<UserDiaryExerciseCourse> res = userDiaryExerciseCourseService.selectUserExerciseRangeCnt(userId);
+    	return ResultGenerator.genSuccessResult(res);
+    }
+    
+    
     
     
 }

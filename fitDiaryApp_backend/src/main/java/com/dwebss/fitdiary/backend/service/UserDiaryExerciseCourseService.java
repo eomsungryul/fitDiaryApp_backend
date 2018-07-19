@@ -13,4 +13,6 @@ public interface UserDiaryExerciseCourseService extends Service<UserDiaryExercis
 
 	List<UserDiaryExerciseCourse> selectExerciseCourse(Integer userDiaryId);
 
+	List<UserDiaryExerciseCourse> selectUserExerciseRangeCnt(Integer userId);
+
 }

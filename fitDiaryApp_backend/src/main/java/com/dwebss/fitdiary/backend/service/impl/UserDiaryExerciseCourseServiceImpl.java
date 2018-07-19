@@ -26,4 +26,9 @@ public class UserDiaryExerciseCourseServiceImpl extends AbstractService<UserDiar
 		return userDiaryExerciseCourseMapper.selectExerciseCourse(userDiaryId);
 	}
 
+	@Override
+	public List<UserDiaryExerciseCourse> selectUserExerciseRangeCnt(Integer userId) {
+		return userDiaryExerciseCourseMapper.selectUserExerciseRangeCnt(userId);
+	}
+
 }
