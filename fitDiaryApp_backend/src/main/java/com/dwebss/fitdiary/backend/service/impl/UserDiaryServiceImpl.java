@@ -31,4 +31,9 @@ public class UserDiaryServiceImpl extends AbstractService<UserDiary> implements 
 		return userDiaryMapper.selectDiary(userDiary);
 	}
 
+	@Override
+	public Integer selectExerciseDay(Integer userId) {
+		return userDiaryMapper.selectExerciseDay(userId);
+	}
+
 }

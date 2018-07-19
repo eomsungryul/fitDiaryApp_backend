@@ -1,5 +1,7 @@
 package com.dwebss.fitdiary.backend.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Table(name = "exercise_course")
@@ -29,7 +31,7 @@ public class ExerciseCourse {
     @Column(name = "USER_ID")
     private Integer userId;
 
-    /**
+	/**
      * getter운동코스ID
      *
      * @return EXERCISE_COURSE_ID - 운동코스ID

@@ -65,7 +65,10 @@ public class CodeGenerator {
 //    	genCode("user_roles");
 
 //    	genCode("common_code_category");
-    	genCode("user_ot_report");
+//    	genCode("user_ot_report");
+//    	genCode("user_inbody_detail");
+//    	genCode("user_inbody_log");
+//    	genCode("exercise_course_set_info");
     	
         //genCodeByCustomModelName( "테이블 이름 입력", "사용자 정의 모델 이름 입력");
     }

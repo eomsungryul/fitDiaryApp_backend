@@ -50,9 +50,43 @@
   
  <select id="selectDiary" parameterType="com.dwebss.fitdiary.backend.model.UserDiary" resultMap="userDiaryMap">
 	SELECT 
-		ud.USER_DIARY_ID ,
+		*
 	FROM USER_DIARY 
-	ORDER BY USER_ID DESC
+	WHERE 1=1
+	<if	test="userId != null">
+	AND USER_ID =  #{ userId }
+	</if>
+	<if	test="startDate != null and endDate == null">
+	AND DAIRY_WRITE_D >= DATE_FORMAT( #{ startDate }, '%Y-%m-%d')
+	</if>
+	<if	test="startDate != null and endDate != null">
+	AND DAIRY_WRITE_D BETWEEN DATE_FORMAT( #{ startDate }, '%Y-%m-%d') AND DATE_FORMAT( #{ endDate }, '%Y-%m-%d')
+	</if>
+  </select>
+  
+  <select id="selectExerciseDay" parameterType="INTEGER" resultType="INTEGER">
+	SELECT 
+		COUNT(*) 
+	FROM
+	(
+		SELECT 
+			*
+		FROM 
+			(
+				SELECT 
+					UD.* ,
+					UDEC.EXERCISE_SUCCESS_YN,
+					UDEC.EXERCISE_ORDER
+				FROM 
+					USER_DIARY UD, USER_DIARY_EXERCISE_COURSE UDEC
+				WHERE 
+				1=1
+				AND UD.USER_DIARY_ID = UDEC.USER_DIARY_ID
+				AND UDEC.EXERCISE_SUCCESS_YN = 'Y'
+				AND UD.USER_ID = #{userId}
+			) A
+		GROUP BY A.DAIRY_WRITE_D
+	) R
   </select>
   
   

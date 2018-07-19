@@ -7,6 +7,8 @@ import com.dwebss.fitdiary.backend.core.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 
@@ -18,5 +20,10 @@ import javax.annotation.Resource;
 public class UserDiaryExerciseCourseServiceImpl extends AbstractService<UserDiaryExerciseCourse> implements UserDiaryExerciseCourseService {
     @Resource
     private UserDiaryExerciseCourseMapper userDiaryExerciseCourseMapper;
+
+	@Override
+	public List<UserDiaryExerciseCourse> selectExerciseCourse(Integer userDiaryId) {
+		return userDiaryExerciseCourseMapper.selectExerciseCourse(userDiaryId);
+	}
 
 }

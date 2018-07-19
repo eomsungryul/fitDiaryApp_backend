@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwebss.fitdiary.backend.dao.ExerciseCourseSetInfoMapper">
+  <resultMap id="exerciseCourseSetInfoMap" type="com.dwebss.fitdiary.backend.model.ExerciseCourseSetInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="EXERCISE_COURSE_SET_ID" jdbcType="INTEGER" property="exerciseCourseSetId" />
+    <result column="EXERCISE_COURSE_DETAIL_ID" jdbcType="INTEGER" property="exerciseCourseDetailId" />
+    <result column="TURN_OR_MINUTE_ETC" jdbcType="INTEGER" property="turnOrMinuteEtc" />
+    <result column="NUMBER_OF_TIMES" jdbcType="INTEGER" property="numberOfTimes" />
+    <result column="WEIGHT" jdbcType="INTEGER" property="weight" />
+  </resultMap>
+  
+  <delete id="deleteSetInfo" parameterType="com.dwebss.fitdiary.backend.model.ExerciseCourseSetInfo">
+  	DELETE FROM EXERCISE_COURSE_SET_INFO WHERE EXERCISE_COURSE_DETAIL_ID = #{exerciseCourseDetailId}
+  </delete>
+  
+  
+ <select id="selectUserSetInfo" parameterType="INTEGER" resultMap="exerciseCourseSetInfoMap">
+	
+	SELECT 
+	    EXERCISE_COURSE_SET_ID, 
+	    EXERCISE_COURSE_DETAIL_ID, 
+	    TURN_OR_MINUTE_ETC, 
+	    NUMBER_OF_TIMES, 
+	    WEIGHT
+	FROM EXERCISE_COURSE_SET_INFO
+	WHERE 
+  	EXERCISE_COURSE_DETAIL_ID = #{ exerciseCourseDetailId} 
+  </select>
+  
+  
+</mapper>

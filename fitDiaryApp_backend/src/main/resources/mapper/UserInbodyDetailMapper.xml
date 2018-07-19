@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwebss.fitdiary.backend.dao.UserInbodyDetailMapper">
+  <resultMap id="userInbodyDetailMap" type="com.dwebss.fitdiary.backend.model.UserInbodyDetail">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="INBODY_DETAIL_ID" jdbcType="INTEGER" property="inbodyDetailId" />
+    <result column="USER_INBODY_ID" jdbcType="INTEGER" property="userInbodyId" />
+    <result column="INBODY_CD" jdbcType="INTEGER" property="inbodyCd" />
+    <result column="INBODY_CD_VALUE" jdbcType="INTEGER" property="inbodyCdValue" />
+    <result column="CODE_NM" jdbcType="INTEGER" property="codeNm" />
+  </resultMap>
+  
+  <select id="selectInbodyDetail" parameterType="Date" resultMap="userInbodyDetailMap">
+	SELECT 
+		*
+	FROM USER_INBODY_DETAIL
+	WHERE 1=1
+	AND USER_INBODY_ID = (
+	SELECT USER_INBODY_ID FROM USER_INBODY_LOG WHERE 
+	INBODY_LOG_DATE = DATE_FORMAT( #{ dairyWriteD }, '%Y-%m-%d')
+	)
+  </select>
+  
+  <select id="selectUserBodyStat" parameterType="INTEGER" resultMap="userInbodyDetailMap">
+	SELECT 
+		UID.* ,
+		CC.CODE_NM 
+	FROM USER_INBODY_DETAIL UID, COMMON_CODE CC
+	WHERE 1=1
+	AND UID.USER_INBODY_ID = (
+		SELECT 
+			USER_INBODY_ID 
+		FROM USER_INBODY_LOG 
+		WHERE 
+		USER_ID=#{ userId } 
+		AND CONVERT_YN='Y'  
+		ORDER BY USER_INBODY_LOG_INSERT_DT DESC 
+		LIMIT 1
+		)
+	AND UID.INBODY_CD = CC.CODE
+  </select>
+  
+  
+  
+  <update id="updateDetail" parameterType="com.dwebss.fitdiary.backend.model.UserInbodyDetail">
+  	UPDATE 
+  		USER_INBODY_DETAIL 
+  	SET 
+  		INBODY_CD_VALUE = #{ inbodyCdValue }
+  	WHERE USER_INBODY_ID = #{ userInbodyId }
+  	AND INBODY_CD = #{ inbodyCd }
+  </update>
+  
+  
+   <select id="selectUserBodyRank" parameterType="hashmap" resultType="hashmap">
+	select 
+	  res.*,
+	  (res.scoreRank/count(*))*100 as scorePct
+	from 
+	(
+		select 
+		a.*,
+		(fat*#{fatWeight})+(muscle*#{muscleWeight})+(bmi*#{bmiWeight}) as score,  
+		@vRank := @vRank +1 as scoreRank
+		from
+		(
+			select 
+			a.user_id , 
+			a.user_inbody_log_insert_dt ,   
+			GROUP_CONCAT(if(INBODY_CD = '310001', INBODY_CD_VALUE, NULL)) AS fat, 
+			GROUP_CONCAT(if(INBODY_CD = '310002', INBODY_CD_VALUE, NULL)) AS muscle, 
+			GROUP_CONCAT(if(INBODY_CD = '310003', INBODY_CD_VALUE, NULL)) AS bmi
+			from 
+			(
+				select uid.*,cc.CODE_NM, uil.user_inbody_log_insert_dt, uil.user_id from user_inbody_detail uid,common_code cc, user_inbody_log uil
+				where 1=1
+				and uid.user_inbody_id in (select
+				user_inbody_id
+				from
+				user_inbody_log
+				where 
+				USER_INBODY_LOG_INSERT_DT in (select max(USER_INBODY_LOG_INSERT_DT) from user_inbody_log where CONVERT_Yn='Y' group by user_id) 
+			)
+			and uid.inbody_cd = cc.code
+			and uid.USER_INBODY_ID = uil.USER_INBODY_ID) a
+			group by user_id, user_inbody_log_insert_dt
+		) a, (select @vRank :=0 ) as r
+		order by score desc
+	) res
+  </select>
+  
+  <select id="selectUserBodyWeight" parameterType="hashmap" resultType="hashmap">
+	select 
+	  a.user_id , 
+	  a.user_inbody_log_insert_dt ,   
+	  GROUP_CONCAT(if(INBODY_CD = '310004', INBODY_CD_VALUE, NULL)) AS weight
+	from 
+	(
+		select uid.*,cc.CODE_NM, uil.user_inbody_log_insert_dt, uil.user_id from user_inbody_detail uid,common_code cc, user_inbody_log uil
+		where 1=1
+		and uid.user_inbody_id in (select
+		user_inbody_id
+		from
+		user_inbody_log
+		where 
+		user_inbody_id in (
+			select user_inbody_id from user_inbody_log where user_id = #{ userId } and CONVERT_Yn='Y' 
+			and user_inbody_log_insert_dt between DATE_FORMAT( #{ startDate }, '%Y-%m-%d') and DATE_FORMAT( #{ endDate }, '%Y-%m-%d') 
+		) 
+	)
+	and uid.inbody_cd = cc.code
+	and uid.USER_INBODY_ID = uil.USER_INBODY_ID) a
+	group by user_id, user_inbody_log_insert_dt
+  </select>
+  
+</mapper>

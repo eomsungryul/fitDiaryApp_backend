@@ -1,5 +1,7 @@
 package com.dwebss.fitdiary.backend.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Table(name = "exercise_course_detail")
@@ -8,6 +10,7 @@ public class ExerciseCourseDetail {
      * 운동코스상세ID
      */
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "EXERCISE_COURSE_DETAIL_ID")
     private Integer exerciseCourseDetailId;
 
@@ -22,8 +25,19 @@ public class ExerciseCourseDetail {
      */
     @Column(name = "EXERCISE_INFO_ID")
     private Integer exerciseInfoId;
+    
+    @Transient
+    private List<ExerciseCourseSetInfo>  exerciseCourseSetInfo;
 
-    /**
+	public List<ExerciseCourseSetInfo> getExerciseCourseSetInfo() {
+		return exerciseCourseSetInfo;
+	}
+
+	public void setExerciseCourseSetInfo(List<ExerciseCourseSetInfo> exerciseCourseSetInfo) {
+		this.exerciseCourseSetInfo = exerciseCourseSetInfo;
+	}
+
+	/**
      * getter운동코스상세ID
      *
      * @return EXERCISE_COURSE_DETAIL_ID - 운동코스상세ID

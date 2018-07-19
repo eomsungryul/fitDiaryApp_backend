@@ -7,6 +7,8 @@ import com.dwebss.fitdiary.backend.core.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 
@@ -18,5 +20,15 @@ import javax.annotation.Resource;
 public class UserExerciseRangeServiceImpl extends AbstractService<UserExerciseRange> implements UserExerciseRangeService {
     @Resource
     private UserExerciseRangeMapper userExerciseRangeMapper;
+
+	@Override
+	public void delete(Integer userId) {
+		userExerciseRangeMapper.deleteRange(userId);
+	}
+
+	@Override
+	public List<UserExerciseRange> selectUserRange(int i) {
+		return userExerciseRangeMapper.selectUserRange(i);
+	}
 
 }

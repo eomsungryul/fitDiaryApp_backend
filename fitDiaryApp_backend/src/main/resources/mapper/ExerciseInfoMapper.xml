@@ -24,4 +24,26 @@
   </select>
   
   
+  <select id="selectExerciseInfoList" parameterType="com.dwebss.fitdiary.backend.model.ExerciseInfo" resultMap="exerciseInfoMap">
+	SELECT 
+		*
+	FROM EXERCISE_INFO
+	WHERE 1=1
+	AND CARDIO_YN=#{cardioYn}
+  </select>
+  
+  <!-- 유저의 운동범위를 이용하여 운동코스 랜덤 리스트를 만드는 쿼리 -->
+  <select id="selectUserExerciseInfo" parameterType="java.util.Map" resultMap="exerciseInfoMap">
+    <choose>
+        <when test="set != 0">
+            <foreach collection="set" separator="UNION ALL">
+	            <foreach collection="res" item="item" index="index" separator="UNION ALL">
+					select * from (select * from exercise_info where EXERCISE_RANGE_CD in (#{item.exerciseRangeCd})  order by rand() limit 1) a
+	            </foreach>
+            </foreach>
+        </when>
+    </choose>
+  </select>
+  
+  
 </mapper>

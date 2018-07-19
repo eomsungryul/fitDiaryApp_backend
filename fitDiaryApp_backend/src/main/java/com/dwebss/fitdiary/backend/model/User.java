@@ -73,6 +73,17 @@ public class User {
     @Transient
     private List<UserGym> userGymList;
 
+    @Transient
+    private List<UserExerciseRange> userExerciseRangeList;
+    
+	public List<UserExerciseRange> getUserExerciseRangeList() {
+		return userExerciseRangeList;
+	}
+
+	public void setUserExerciseRangeList(List<UserExerciseRange> userExerciseRangeList) {
+		this.userExerciseRangeList = userExerciseRangeList;
+	}
+
 	public List<UserGym> getUserGymList() {
 		return userGymList;
 	}

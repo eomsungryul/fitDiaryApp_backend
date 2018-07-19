@@ -35,8 +35,14 @@ public class UserDiary {
     /**
      * 사진경로
      */
-    @Column(name = "SELF_IMAGE_PATH")
-    private String selfImagePath;
+    @Column(name = "SELF_IMAGE_LOCAL")
+    private String selfImageLocal;
+    
+    /**
+     * 사진경로
+     */
+    @Column(name = "SELF_IMAGE_URL")
+    private String selfImageUrl;
 
     @Transient
     private String exerciseSuccessYn;
@@ -62,8 +68,29 @@ public class UserDiary {
     @Transient
     private Date endDate;
 
+    @Transient
+    private List<UserDiaryExerciseCourse> userDiaryExerciseCourse;
+    
+    @Transient
+    private List<UserInbodyDetail> userInbodyDetail;
 
-    public Date getStartDate() {
+    public List<UserDiaryExerciseCourse> getUserDiaryExerciseCourse() {
+		return userDiaryExerciseCourse;
+	}
+
+	public void setUserDiaryExerciseCourse(List<UserDiaryExerciseCourse> userDiaryExerciseCourse) {
+		this.userDiaryExerciseCourse = userDiaryExerciseCourse;
+	}
+
+	public List<UserInbodyDetail> getUserInbodyDetail() {
+		return userInbodyDetail;
+	}
+
+	public void setUserInbodyDetail(List<UserInbodyDetail> userInbodyDetail) {
+		this.userInbodyDetail = userInbodyDetail;
+	}
+
+	public Date getStartDate() {
 		return startDate;
 	}
 
@@ -199,21 +226,20 @@ public class UserDiary {
         this.diaryContent = diaryContent;
     }
 
-    /**
-     * getter사진경로
-     *
-     * @return SELF_IMAGE_PATH - 사진경로
-     */
-    public String getSelfImagePath() {
-        return selfImagePath;
-    }
+	public String getSelfImageLocal() {
+		return selfImageLocal;
+	}
 
-    /**
-     * setter사진경로
-     *
-     * @param selfImagePath 사진경로
-     */
-    public void setSelfImagePath(String selfImagePath) {
-        this.selfImagePath = selfImagePath;
-    }
+	public void setSelfImageLocal(String selfImageLocal) {
+		this.selfImageLocal = selfImageLocal;
+	}
+
+	public String getSelfImageUrl() {
+		return selfImageUrl;
+	}
+
+	public void setSelfImageUrl(String selfImageUrl) {
+		this.selfImageUrl = selfImageUrl;
+	}
+    
 }

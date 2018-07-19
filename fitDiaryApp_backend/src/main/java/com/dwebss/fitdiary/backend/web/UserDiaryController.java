@@ -3,7 +3,9 @@ package com.dwebss.fitdiary.backend.web;
 import com.dwebss.fitdiary.backend.core.Result;
 import com.dwebss.fitdiary.backend.core.ResultGenerator;
 import com.dwebss.fitdiary.backend.model.UserDiary;
+import com.dwebss.fitdiary.backend.service.UserDiaryExerciseCourseService;
 import com.dwebss.fitdiary.backend.service.UserDiaryService;
+import com.dwebss.fitdiary.backend.service.UserInbodyDetailService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -21,8 +23,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/user/diary")
 public class UserDiaryController {
+	
     @Resource
     private UserDiaryService userDiaryService;
+
+    @Resource
+    private UserDiaryExerciseCourseService userDiaryExerciseCourseService;
+    
+    @Resource
+    private UserInbodyDetailService userInbodyDetailService;
 
     @PostMapping
     public Result add(@RequestBody UserDiary userDiary) {
@@ -69,6 +78,29 @@ public class UserDiaryController {
         userDiary.setEndDate(java.sql.Date.valueOf(endDate));
         List<UserDiary> res = userDiaryService.selectDiary(userDiary);
         
+        for(UserDiary ud :  res) {
+        	ud.setUserDiaryExerciseCourse(userDiaryExerciseCourseService.selectExerciseCourse(ud.getUserDiaryId()));
+        	ud.setUserInbodyDetail(userInbodyDetailService.selectInbodyDetail(ud.getDairyWriteD()));
+        }
+        
         return ResultGenerator.genSuccessResult(res);
+    }
+    
+    @GetMapping("/{userId}/{startDate}")
+    public Result selectDiary(@PathVariable Integer userId ,
+    		@PathVariable @DateTimeFormat(pattern = "yyyyMMdd") LocalDate startDate
+    		) {
+    	
+    	UserDiary userDiary = new UserDiary();
+    	userDiary.setUserId(userId);
+    	userDiary.setStartDate(java.sql.Date.valueOf(startDate));
+    	List<UserDiary> res = userDiaryService.selectDiary(userDiary);
+    	
+    	for(UserDiary ud :  res) {
+    		ud.setUserDiaryExerciseCourse(userDiaryExerciseCourseService.selectExerciseCourse(ud.getUserDiaryId()));
+    		ud.setUserInbodyDetail(userInbodyDetailService.selectInbodyDetail(ud.getDairyWriteD()));
+    	}
+    	
+    	return ResultGenerator.genSuccessResult(res);
     }
 }

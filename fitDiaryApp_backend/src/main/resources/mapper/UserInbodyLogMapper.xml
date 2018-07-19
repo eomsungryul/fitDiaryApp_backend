@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwebss.fitdiary.backend.dao.UserInbodyLogMapper">
+  <resultMap id="userInbodyLogMap" type="com.dwebss.fitdiary.backend.model.UserInbodyLog">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="USER_INBODY_ID" jdbcType="INTEGER" property="userInbodyId" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="GYM_ID" jdbcType="INTEGER" property="gymId" />
+    <result column="USER_INBODY_LOG_INSERT_DT" jdbcType="TIMESTAMP" property="userInbodyLogInsertDt" />
+    <result column="DEL_YN" jdbcType="CHAR" property="delYn" />
+    <result column="INBODY_URL" jdbcType="VARCHAR" property="inbodyUrl" />
+    <result column="CONVERT_ID" jdbcType="INTEGER" property="convertId" />
+    <result column="CONVERT_YN" jdbcType="CHAR" property="convertYn" />
+  </resultMap>
+  
+  
+ <select id="selectInbodyLog" parameterType="com.dwebss.fitdiary.backend.model.UserInbodyLog" resultMap="userInbodyLogMap">
+	SELECT 
+		*
+	FROM USER_INBODY_LOG 
+	WHERE 1=1
+	<if	test="userId != null">
+	AND USER_ID =  #{ userId }
+	</if>
+	<if	test="userInbodyLogInsertDt != null">
+	AND USER_INBODY_LOG_INSERT_DT = DATE_FORMAT( #{ userInbodyLogInsertDt }, '%Y-%m-%d')
+	</if>
+  </select>
+  
+  
+    <insert id="insertInbodyLog" parameterType="com.dwebss.fitdiary.backend.model.UserInbodyLog" >
+    	<selectKey resultType="INTEGER" keyProperty="userInbodyId" order="BEFORE">
+            SELECT COALESCE(MAX(USER_INBODY_ID)+1,0) FROM USER_INBODY_LOG
+        </selectKey>
+		INSERT INTO USER_INBODY_LOG (
+		    USER_INBODY_ID, 
+		    USER_ID, 
+		    GYM_ID, 
+		    USER_INBODY_LOG_INSERT_DT, 
+		    DEL_YN, 
+		    INBODY_URL
+        )
+        VALUES (
+	        #{ userInbodyId },
+	        #{ userId },
+	        #{ gymId },
+	       	now(),
+	       	'N',
+	       	#{ inbodyUrl }
+       	)
+    </insert>
+  
+  
+  
+</mapper>

@@ -10,4 +10,7 @@ public interface UserDiaryMapper extends Mapper<UserDiary> {
 	List<UserDiary> selectTodayExerciseCourse(UserDiary userDiary);
 
 	List<UserDiary> selectDiary(UserDiary userDiary);
+
+	Integer selectExerciseDay(Integer userId);
+
 }

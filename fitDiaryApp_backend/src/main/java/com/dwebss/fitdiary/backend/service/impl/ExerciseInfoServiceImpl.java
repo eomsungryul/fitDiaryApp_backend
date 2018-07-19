@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -24,6 +25,16 @@ public class ExerciseInfoServiceImpl extends AbstractService<ExerciseInfo> imple
 	@Override
 	public List<ExerciseInfo> selectExerciseInfo(Integer exerciseRangeCd) {
 		return exerciseInfoMapper.selectExerciseInfo(exerciseRangeCd);
+	}
+
+	@Override
+	public List<ExerciseInfo> selectUserExerciseInfo(Map<String, Object> param) {
+		return exerciseInfoMapper.selectUserExerciseInfo(param);
+	}
+
+	@Override
+	public List<ExerciseInfo> selectExerciseInfoList(ExerciseInfo vo) {
+		return exerciseInfoMapper.selectExerciseInfoList(vo);
 	}
 
 }

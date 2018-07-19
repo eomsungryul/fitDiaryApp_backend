@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dwebss.fitdiary.backend.dao.UserExerciseRangeMapper">
-  <resultMap id="BaseResultMap" type="com.dwebss.fitdiary.backend.model.UserExerciseRange">
+  <resultMap id="userExerciseRangeMap" type="com.dwebss.fitdiary.backend.model.UserExerciseRange">
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="EXERCISE_RANGE_CD" jdbcType="INTEGER" property="exerciseRangeCd" />
+    <id column="EXERCISE_RANGE_ID" jdbcType="INTEGER" property="exerciseRangeId" />
     <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="EXERCISE_RANGE_CD" jdbcType="INTEGER" property="exerciseRangeCd" />
   </resultMap>
+  
+  <delete id="deleteRange" parameterType="com.dwebss.fitdiary.backend.model.UserExerciseRange">
+  	DELETE FROM USER_EXERCISE_RANGE WHERE USER_ID = #{userId}
+  </delete>
+  
+  <select id="selectUserRange" parameterType="INTEGER" resultMap="userExerciseRangeMap">
+  	select * FROM USER_EXERCISE_RANGE WHERE USER_ID = #{userId}
+  </select>
+  
 </mapper>

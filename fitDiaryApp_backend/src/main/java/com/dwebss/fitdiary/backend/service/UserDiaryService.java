@@ -15,4 +15,6 @@ public interface UserDiaryService extends Service<UserDiary> {
 
 	List<UserDiary> selectDiary(UserDiary userDiary);
 
+	Integer selectExerciseDay(Integer userId);
+
 }

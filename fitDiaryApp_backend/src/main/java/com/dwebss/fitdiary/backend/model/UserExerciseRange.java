@@ -8,8 +8,8 @@ public class UserExerciseRange {
      * 운동범위코드
      */
     @Id
-    @Column(name = "EXERCISE_RANGE_CD")
-    private Integer exerciseRangeCd;
+    @Column(name = "EXERCISE_RANGE_ID")
+    private Integer exerciseRangeId;
 
     /**
      * 사용자ID
@@ -17,7 +17,18 @@ public class UserExerciseRange {
     @Column(name = "USER_ID")
     private Integer userId;
 
-    /**
+    @Column(name = "EXERCISE_RANGE_CD")
+    private Integer exerciseRangeCd;
+
+    public Integer getExerciseRangeId() {
+		return exerciseRangeId;
+	}
+
+	public void setExerciseRangeId(Integer exerciseRangeId) {
+		this.exerciseRangeId = exerciseRangeId;
+	}
+
+	/**
      * getter운동범위코드
      *
      * @return EXERCISE_RANGE_CD - 운동범위코드
