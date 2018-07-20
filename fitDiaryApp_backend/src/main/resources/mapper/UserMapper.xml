@@ -20,9 +20,9 @@
   <select id="selectUser" parameterType="com.dwebss.fitdiary.backend.model.User" resultMap="userMap">
 	SELECT 
 		*
-	FROM USER_DIARY_EXERCISE_COURSE
+	FROM USER
 	WHERE 1=1
-	AND USER_DIARY_ID = #{userDiaryId}
+	AND USER_EMAIL = #{userEmail}
   </select>
   
   
