@@ -126,5 +126,5 @@
 		</plugins>
 	</build>
 
-	<name>fitDiaryBackend</name>
+	<name>fitDiary</name>
 </project>
