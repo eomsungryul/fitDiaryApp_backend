@@ -67,8 +67,17 @@ public class User {
     /**
      * 사용자이메일
      */
-    @Column(name = "USER_EMAIL")
+    @Transient
     private String userEmail;
+
+    @Column(name = "USER_EMAIL_GMAIL")
+    private String userEmailGmail;
+    
+    @Column(name = "USER_EMAIL_FACEBOOK")
+    private String userEmailFacebook;
+    
+    @Column(name = "PUSH_TOKEN")
+    private String pushToken;
     
     @Transient
     private List<UserGym> userGymList;
@@ -271,4 +280,28 @@ public class User {
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
     }
+
+	public String getUserEmailGmail() {
+		return userEmailGmail;
+	}
+
+	public void setUserEmailGmail(String userEmailGmail) {
+		this.userEmailGmail = userEmailGmail;
+	}
+
+	public String getUserEmailFacebook() {
+		return userEmailFacebook;
+	}
+
+	public void setUserEmailFacebook(String userEmailFacebook) {
+		this.userEmailFacebook = userEmailFacebook;
+	}
+
+	public String getPushToken() {
+		return pushToken;
+	}
+
+	public void setPushToken(String pushToken) {
+		this.pushToken = pushToken;
+	}
 }

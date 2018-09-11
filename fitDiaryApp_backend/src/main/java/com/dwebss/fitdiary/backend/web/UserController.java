@@ -1,6 +1,7 @@
 package com.dwebss.fitdiary.backend.web;
 
 import com.dwebss.fitdiary.backend.core.Result;
+import com.dwebss.fitdiary.backend.core.ResultCode;
 import com.dwebss.fitdiary.backend.core.ResultGenerator;
 import com.dwebss.fitdiary.backend.model.ExerciseInfo;
 import com.dwebss.fitdiary.backend.model.User;
@@ -165,8 +166,14 @@ public class UserController {
     public Result detail(@PathVariable String userEmail) {
     	User user = new User();
     	user.setUserEmail(userEmail);
+        ResultCode resCode = ResultCode.SUCCESS;
+        String message = "SUCCESS";
     	User res = userService.selectUser(user);
-    	return ResultGenerator.genSuccessResult(res);
+        if (res ==null) {
+        	resCode = ResultCode.NOT_FOUND;
+            message = "NOTFOUND";
+        }
+    	return ResultGenerator.genSuccessResult(res).setCode(resCode).setMessage(message);
     }
 
     @GetMapping
@@ -318,7 +325,26 @@ public class UserController {
     	return ResultGenerator.genSuccessResult(res);
     }
     
-    
+
+    @PutMapping("/phone/{phone}")
+    public Result updateUser(@RequestBody User user, @PathVariable String phone) {
+
+    	user.setUserPhone(phone);
+    	User param = new User();
+    	param.setUserPhone(phone);
+        User res = userService.selectUser(param);
+        
+        if (res ==null) {
+        	user.setUserLoginId(phone);
+        	userService.save(user);
+        	user = userService.selectUser(param);
+        }else {
+        	userService.updateUser(user);
+        	user = userService.selectUser(param);
+        }
+        
+        return ResultGenerator.genSuccessResult(user);
+    }
     
     
 }
