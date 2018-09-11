@@ -18,7 +18,7 @@ import java.util.*;
  */
 public class CodeGenerator {
     //JDBC 설정. 프로젝트의 실제 설정을 수정하십시오.
-    private static final String JDBC_URL = "jdbc:mysql://13.125.124.29:3306/fitness?useSSL=false&amp;serverTimezone=UTC";
+    private static final String JDBC_URL = "jdbc:mysql://52.79.240.67:3306/fitness?useSSL=false&amp;serverTimezone=UTC";
     private static final String JDBC_USERNAME = "fit";
     private static final String JDBC_PASSWORD = "dlfgkwk9!";
     private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";

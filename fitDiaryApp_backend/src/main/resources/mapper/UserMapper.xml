@@ -15,17 +15,63 @@
     <result column="AUTH_CD" jdbcType="INTEGER" property="authCd" />
     <result column="USER_SEX" jdbcType="CHAR" property="userSex" />
     <result column="USER_EMAIL" jdbcType="VARCHAR" property="userEmail" />
+    <result column="USER_EMAIL_GMAIL" jdbcType="VARCHAR" property="userEmailGmail" />
+    <result column="USER_EMAIL_FACEBOOK" jdbcType="VARCHAR" property="userEmailFacebook" />
+    <result column="PUSH_TOKEN" jdbcType="VARCHAR" property="pushToken" />
   </resultMap>
   
+	<sql id="SelectWhereQuery">
+	WHERE 1=1
+		<if test="userLoginId !='' and  userLoginId !=null">
+			AND USER_LOGIN_ID = #{userLoginId}
+		</if>	
+		<if test="userPassword !='' and  userPassword !=null">
+			AND USER_PASSWORD = #{userPassword}
+		</if>	
+		<if test="userId !='' and  userId !=null">
+			AND USER_ID = #{userId}
+		</if>	
+		<if test="userEmail !='' and  userEmail !=null">
+			AND (USER_EMAIL_GMAIL = #{userEmail}
+			OR USER_EMAIL_FACEBOOK = #{userEmail})
+		</if>	
+		<if test="userPhone !='' and  userPhone !=null">
+			AND USER_PHONE = #{userPhone}
+		</if>	
+	</sql>
+	
   <select id="selectUser" parameterType="com.dwebss.fitdiary.backend.model.User" resultMap="userMap">
 	SELECT 
-		*
+		USER_ID,
+		USER_LOGIN_ID,
+		USER_PASSWORD,
+		USER_NM,
+		USER_HEIGHT,
+		USER_PHONE,
+		AUTH_CD,
+		USER_SEX,
+		USER_EMAIL_GMAIL,
+		USER_EMAIL_FACEBOOK,
+		PUSH_TOKEN
 	FROM USER
-	WHERE 1=1
-	AND USER_EMAIL = #{userEmail}
+		<include refid="com.dwebss.fitdiary.backend.dao.UserMapper.SelectWhereQuery" />
   </select>
   
-  
+  <update id="updateUser" parameterType="com.dwebss.fitdiary.backend.model.User">
+    	UPDATE USER SET
+		<if test="userEmailGmail !='' and  userEmailGmail !=null">
+    		USER_EMAIL_GMAIL = #{userEmailGmail}, 
+		</if>	
+		<if test="userEmailFacebook !='' and  userEmailFacebook !=null">
+    		USER_EMAIL_FACEBOOK = #{userEmailFacebook}, 
+		</if>	
+		<if test="pushToken !='' and  pushToken !=null">
+    		PUSH_TOKEN = #{pushToken}, 
+		</if>	
+    		USER_NM = #{userNm}
+    	WHERE 1=1
+		AND USER_PHONE = #{userPhone}
+    </update>
   
   
 </mapper>

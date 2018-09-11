@@ -6,4 +6,6 @@ import com.dwebss.fitdiary.backend.model.User;
 public interface UserMapper extends Mapper<User> {
 
 	User selectUser(User user);
+
+	void updateUser(User user);
 }
