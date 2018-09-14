@@ -46,6 +46,7 @@
 		USER_LOGIN_ID,
 		USER_PASSWORD,
 		USER_NM,
+		USER_WEIGHT,
 		USER_HEIGHT,
 		USER_PHONE,
 		AUTH_CD,
@@ -59,6 +60,15 @@
   
   <update id="updateUser" parameterType="com.dwebss.fitdiary.backend.model.User">
     	UPDATE USER SET
+		<if test="userHeight !='' and  userHeight !=null">
+    		USER_HEIGHT = #{userHeight}, 
+		</if>	
+		<if test="userWeight !='' and  userWeight !=null">
+    		USER_WEIGHT = #{userWeight}, 
+		</if>	
+		<if test="userSex !='' and  userSex !=null">
+    		USER_SEX = #{userSex}, 
+		</if>	
 		<if test="userEmailGmail !='' and  userEmailGmail !=null">
     		USER_EMAIL_GMAIL = #{userEmailGmail}, 
 		</if>	
@@ -68,9 +78,14 @@
 		<if test="pushToken !='' and  pushToken !=null">
     		PUSH_TOKEN = #{pushToken}, 
 		</if>	
-    		USER_NM = #{userNm}
+		<if test="userNm !='' and  userNm !=null">
+    		USER_NM = #{userNm}, 
+		</if>	
+    		USER_LOGIN_ID = #{userLoginId}
     	WHERE 1=1
-		AND USER_PHONE = #{userPhone}
+		<if test="userId !='' and  userId !=null">
+			AND USER_ID = #{userId}
+		</if>	
     </update>
   
   

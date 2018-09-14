@@ -1,5 +1,27 @@
 package com.dwebss.fitdiary.backend.web;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.dwebss.fitdiary.backend.core.Result;
 import com.dwebss.fitdiary.backend.core.ResultCode;
 import com.dwebss.fitdiary.backend.core.ResultGenerator;
@@ -19,25 +41,6 @@ import com.dwebss.fitdiary.backend.service.UserInbodyDetailService;
 import com.dwebss.fitdiary.backend.service.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.mysql.jdbc.IterateBlock;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-
-import static org.mockito.Matchers.intThat;
-
-import java.math.BigDecimal;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
 * Created by 엄성렬 on 2018/07/10.
@@ -169,6 +172,15 @@ public class UserController {
         ResultCode resCode = ResultCode.SUCCESS;
         String message = "SUCCESS";
     	User res = userService.selectUser(user);
+    	UserGym paramug = new UserGym();
+    	paramug.setUserId(res.getUserId());
+    	paramug.setGymId(0);
+    	UserGym ug = userGymService.select(paramug);
+    	List<UserGym> ugl = new ArrayList<UserGym>();
+    	ugl.add(ug);
+    	res.setUserGymList(ugl);
+    	List<UserExerciseRange> uer = userExerciseRangeService.selectUserRange(res.getUserId());
+    	res.setUserExerciseRangeList(uer);
         if (res ==null) {
         	resCode = ResultCode.NOT_FOUND;
             message = "NOTFOUND";
@@ -346,5 +358,76 @@ public class UserController {
         return ResultGenerator.genSuccessResult(user);
     }
     
+    @PutMapping("/email/{userEmail:.+}")
+    public Result updateUserByPhone(@RequestBody User user, @PathVariable String userEmail) {
+    	User param = new User();
+    	param.setUserEmail(userEmail);
+    	User res = userService.selectUser(param);
+        
+        if (res==null) {
+        	//신규
+        	user.setUserLoginId(userEmail);
+        	userService.save(user);
+        	user = userService.selectUser(param);
+        	
+        	//user_gym 신규 등록
+        	UserGym ug = new UserGym();
+        	ug.setGymId(0); //체육관 등록은 없음.
+        	ug.setUserId(user.getUserId());
+        	ug.setUserExerciseCd(user.getUserGymList().get(0).getUserExerciseCd());
+        	userGymService.save(ug);
+        	//user_exercise_range 신규 등록
+        	List<UserExerciseRange> userExerciseRange = user.getUserExerciseRangeList();
+        	for (UserExerciseRange uer : userExerciseRange) {
+        		uer.setUserId(user.getUserId());
+    			//insert
+                userExerciseRangeService.save(uer);
+        	}
+        }else {
+        	//수정
+        	int uec = 0;
+        	if(user.getUserGymList()!=null && user.getUserGymList().size()>0){
+        		uec = user.getUserGymList().get(0).getUserExerciseCd();
+        	}
+        	BigDecimal ucr = new BigDecimal(0);
+        	if(user.getUserGymList()!=null && user.getUserGymList().size()>0){
+        		ucr = user.getUserGymList().get(0).getUserCardioRatio();
+        	}
+        	List<UserExerciseRange> userExerciseRange = new ArrayList<>();
+        	if(user.getUserExerciseRangeList()!=null && user.getUserExerciseRangeList().size()>0){
+        		userExerciseRange = user.getUserExerciseRangeList();
+        	}
+        	user.setUserId(res.getUserId());
+        	userService.updateUser(user);
+        	user = userService.selectUser(param);
+        	//user_gym 삭제하고 입력
+        	UserGym ugparam = new UserGym();
+        	//체육관 등록은 없음.
+        	ugparam.setGymId(0);
+        	ugparam.setUserId(user.getUserId());
+        	UserGym ug = userGymService.select(ugparam);
+        	if(uec==0){
+        		uec=11000;
+        	}
+        	ugparam.setUserExerciseCd(uec);
+        	ugparam.setUserCardioRatio(ucr);
+        	if(ug==null){
+            	userGymService.save(ugparam);
+        	}
+        	ug = userGymService.select(ugparam);
+        	ug.setUserExerciseCd(uec);
+        	ug.setUserCardioRatio(ucr);
+        	userGymService.update(ug);
+        	//TODO user_exercise_range 삭제하고 입력
+        	userExerciseRangeService.delete(user.getUserId());
+        	for (UserExerciseRange uern : userExerciseRange) {
+        		uern.setUserId(user.getUserId());
+    			//insert
+                userExerciseRangeService.save(uern);
+        	}
+        	
+        }
+    	return ResultGenerator.genSuccessResult(user);
+    }
     
 }

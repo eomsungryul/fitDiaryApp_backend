@@ -5,7 +5,7 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="UESR_GYM_ID" jdbcType="INTEGER" property="uesrGymId" />
+    <id column="USER_GYM_ID" jdbcType="INTEGER" property="userGymId" />
     <result column="GYM_ID" jdbcType="INTEGER" property="gymId" />
     <result column="USER_ID" jdbcType="INTEGER" property="userId" />
     <result column="USER_ROLE_CD" jdbcType="INTEGER" property="userRoleCd" />
